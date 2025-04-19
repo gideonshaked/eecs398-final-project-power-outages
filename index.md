@@ -4,7 +4,7 @@
 
 ## Introduction
 
-Power outages are costly disruptions that can stem from various causes, ranging from severe weather to technical failures. Understanding the relationships between the *cause* of an outage and its *impact*--both in terms of restoration time and number of customers affected--is vital for both policymakers and utility companies.
+Power outages are costly disruptions that can stem from various causes, ranging from severe weather to technical failures. Understanding the relationships between the *cause* of an outage and its *impact*, both in terms of restoration time and number of customers affected, is vital for both policymakers and utility companies.
 
 This project investigates the question of **how different aspects of an outage (e.g., weather vs. technical failure) impact the restoration time**
 
@@ -35,15 +35,14 @@ The dataset spans major U.S. power outages from 2000 to 2016 and contains detail
 
 We began by visualizing the distribution of outage durations:
 
-<iframe src="assets/plots/univar/Outage_Duration_1400x700.html" width="1400" height="700" frameborder="0"></iframe>
+<iframe src="assets/plots/univar/Outage_Duration_1400x700.html" width="1400" height="700" frameborder="0" scrolling="no"></iframe>
 
 Outages typically last under 3 days, though long tails exist due to extreme events.
 
 We also looked at how outages are distributed over time:
 
-<iframe src="assets/plots/univar/Power_Outages_by_Year_1000x400.html" width="1000" height="400" frameborder="0"></iframe>
-
-<iframe src="assets/plots/univar/Average_Outage_Duration_by_Month_1400x700.html" width="1400" height="700" frameborder="0"></iframe>
+<iframe src="assets/plots/univar/Power_Outages_by_Year_1000x400.html" width="1000" height="400" frameborder="0" scrolling="no"></iframe>
+<iframe src="assets/plots/univar/Average_Outage_Duration_by_Month_1400x700.html" width="1400" height="700" frameborder="0" scrolling="no"></iframe>
 
 Outage frequency peaks in summer, likely reflecting storm seasons, while average duration spikes in winter--potentially due to ice storms and slower repairs.
 
@@ -51,19 +50,19 @@ Outage frequency peaks in summer, likely reflecting storm seasons, while average
 
 To examine cause-specific impacts:
 
-<iframe src="assets/plots/bivar/Outage_Duration_by_Cause_Category_1400x700.html" width="1400" height="700" frameborder="0"></iframe>
+<iframe src="assets/plots/bivar/Outage_Duration_by_Cause_Category_1400x700.html" width="1400" height="700" frameborder="0" scrolling="no"></iframe>
 
 Weather-related outages generally have higher durations than equipment failures or intentional attacks.
 
 We also explored how outage causes vary over time and geography:
 
-<iframe src="assets/plots/bivar/Distribution_of_Each_Cause_Category_by_Month_pct_1000x600.html" width="1000" height="600" frameborder="0"></iframe>
-<iframe src="assets/plots/bivar/Distribution_of_Each_Cause_Category_by_Climate_Region_pct_1000x600.html" width="1000" height="600" frameborder="0"></iframe>
-<iframe src="assets/plots/bivar/Distribution_of_Each_Cause_Category_by_Year_pct_1000x600.html" width="1000" height="600" frameborder="0"></iframe>
+<iframe src="assets/plots/bivar/Distribution_of_Each_Cause_Category_by_Month_pct_1000x600.html" width="1000" height="600" frameborder="0" scrolling="no"></iframe>
+<iframe src="assets/plots/bivar/Distribution_of_Each_Cause_Category_by_Climate_Region_pct_1000x600.html" width="1000" height="600" frameborder="0" scrolling="no"></iframe>
+<iframe src="assets/plots/bivar/Distribution_of_Each_Cause_Category_by_Year_pct_1000x600.html" width="1000" height="600" frameborder="0" scrolling="no"></iframe>
 
 Finally, we visualized how time-of-day and work hours influence outage durations:
 
-<iframe src="assets/plots/bivar/Outage_Duration_Distribution-_Work_Hours_vs_Off_Hours_by_Region_1000x600.html" width="1000" height="600" frameborder="0"></iframe>
+<iframe src="assets/plots/bivar/Outage_Duration_Distribution-_Work_Hours_vs_Off_Hours_by_Region_1000x600.html" width="1000" height="600" frameborder="0" scrolling="no"></iframe>
 
 Outages during off-hours tend to last longer, especially in certain climate zones.
 
@@ -104,7 +103,7 @@ The test MSE: **10,625**
 
 ### Performance Visualization
 
-<iframe src="assets/plots/eval/Actual_vs_Predicted_Outage_Duration_with_Absolute_Error_1000x700.html" width="1000" height="700" frameborder="0"></iframe>
+<iframe src="assets/plots/eval/Actual_vs_Predicted_Outage_Duration_with_Absolute_Error_1000x700.html" width="1000" height="700" frameborder="0" scrolling="no"></iframe>
 
 ## Final Model
 
@@ -121,4 +120,12 @@ The same model architecture and hyperparameter grid were used. Final MSE: **10,4
 
 ### Comparison Visualization
 
-<iframe src="assets/plots/eval/plot_1_2025-04-19_19-22-38.867170_1200x700.html" width="1200" height="700" frameborder="0"></iframe>
+<iframe src="assets/plots/eval/plot_1_2025-04-19_19-22-38.867170_1200x700.html" width="1200" height="700" frameborder="0" scrolling="no"></iframe>
+
+## Conclusion
+
+In this project, we set out to understand how the cause of a power outage affects its overall impact--specifically the number of customers affected and the time it takes to restore service. Through a combination of exploratory analysis and predictive modeling, we found that outages caused by severe weather tend to be more disruptive and longer-lasting than those from technical failures or other sources.
+
+We trained a regression model to predict outage duration using only information that would be available at the time the outage begins. Our baseline model already showed reasonable performance, but after engineering a few additional features, like whether a hurricane was involved or how urban the affected area was. With these added features, we were able to reduce the prediction error even further.
+
+While there’s still plenty of room for improvement, this project shows that it’s possible to make meaningful predictions about outage duration using static metadata alone. That kind of insight could be valuable for improving communication with customers and planning emergency responses more effectively.
