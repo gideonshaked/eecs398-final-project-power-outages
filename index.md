@@ -68,9 +68,33 @@ Outages during off-hours tend to last longer, especially in certain climate zone
 
 ### Aggregated Tables
 
-We aggregated data to understand regional variation in outage impact:
+We aggregated data to understand regional variation in outage impact.
 
-- <table on Climate Region & Cause Analysis here>
+#### Climate Region & Cause Analysis here
+
+| climate.region     |   equipment failure |   fuel supply emergency |   intentional attack |   islanding |
+public appeal |   severe weather |   system operability disruption |
+|:-------------------|--------------------:|------------------------:|---------------------:|------------:|--------
+--------:|-----------------:|--------------------------------:|
+| Central            |                   5 |                       4 |                   34 |           3 |
+2 |              133 |                              10 |
+| East North Central |                   3 |                       4 |                   20 |           1 |
+2 |              104 |                               3 |
+| Northeast          |                   5 |                      14 |                  131 |           1 |
+4 |              175 |                              14 |
+| Northwest          |                   2 |                       1 |                   85 |           3 |
+2 |               25 |                               4 |
+| South              |                   9 |                       4 |                   28 |           2 |
+42 |              106 |                              27 |
+| Southeast          |                   4 |                       0 |                    9 |           0 |
+5 |              116 |                              16 |
+| Southwest          |                   5 |                       1 |                   61 |           1 |
+1 |               10 |                               9 |
+| West               |                  21 |                      10 |                   31 |          28 |
+9 |               67 |                              39 |
+| West North Central |                   1 |                       0 |                    4 |           5 |
+2 |                4 |                               0 |
+
 - <table on Seasonal Duration here>
 - <table on Economic Impact (sales, price, customers) here>
 - <table on Impact Severity Score (duration × affected fraction) here>
