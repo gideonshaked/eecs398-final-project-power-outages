@@ -1,6 +1,3 @@
-
-**Author**: Gideon Shaked
-
 # Introduction
 
 Power outages are costly disruptions that can stem from various causes, ranging from severe weather to technical failures. Understanding the relationships between the *cause* of an outage and its *impact*--both in terms of restoration time and number of customers affected--is vital for both policymakers and utility companies.
