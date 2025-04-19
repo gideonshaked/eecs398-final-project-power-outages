@@ -1,24 +1,37 @@
-# Introduction
+# Forecasting Power Outage Duration Using Predictive Models
+
+**Author:** Gideon Shaked ([gshaked@umich.edu](mailto:gshaked@umich.edu))
+
+## Introduction
 
 Power outages are costly disruptions that can stem from various causes, ranging from severe weather to technical failures. Understanding the relationships between the *cause* of an outage and its *impact*--both in terms of restoration time and number of customers affected--is vital for both policymakers and utility companies.
 
-This project investigates: **How does the cause of an outage (e.g., weather vs. technical failure) impact the number of customers affected and the restoration time?**
+This project investigates the question of **how different aspects of an outage (e.g., weather vs. technical failure) impact the restoration time**
 
 The dataset spans major U.S. power outages from 2000 to 2016 and contains detailed outage characteristics including cause, duration, geographic metadata, and economic indicators.
 
 - **Rows**: ~1,500 outage events  
-- **Relevant Columns**:
-  - `cause.category` - general cause classification  
-  - `cause.category.detail` - more specific cause  
-  - `outage.duration.days` - total days until full restoration  
-  - `customers.affected` - number of customers impacted  
-  - `climate.region` - geographic region of event  
-  - `outage.start` / `outage.end` - timestamps  
-  - `hurricane.names`, `population`, `urban/rural density`, and more
+- **Relevant Columns**
+  - **`outage.start.date`**: The date that the outage started.
+  - **`outage.start.date`**: The time that the outage started.
+  - **`u.s._state`**: Full name of the U.S. state where the outage occurred.
+  - **`postal.code`**: State-level postal code abbreviation (e.g. MI, CA).
+  - **`nerc.region`**: NERC (North American Electric Reliability Corporation) reliability region associated with the outage.
+  - **`climate.region`**: Climate region classification based on geography (e.g. Southeast, Northwest).
+  - **`anomaly.level`**: A numerical indicator of how abnormal the weather was relative to historical averages.
+  - **`climate.category`**: Broader climate category classification used in the dataset.
+  - **`hurricane.names`**: Name of the hurricane associated with the outage, if any.
+  - **`cause.category`**: High-level classification of outage cause (e.g. Severe Weather, Equipment Failure).
+  - **`cause.category.detail`**: More specific cause label (e.g. Lightning, Thunderstorm, Vandalism).
+  - **`demand.loss.mw`**: The megawatts of electricity demand lost during the outage.
+  - **`population`**: Total population in the affected area.
+  - **`popden_urban`**: Urban population density (people per square mile).
+  - **`popden_rural`**: Rural population density (people per square mile).
+  - **`poppct_urban`**: Percentage of the local population living in urban areas.
 
-# Data Cleaning and Exploratory Data Analysis
+## Data Cleaning and Exploratory Data Analysis
 
-## Univariate Analysis
+### Univariate Analysis
 
 We began by visualizing the distribution of outage durations:
 
@@ -34,7 +47,7 @@ We also looked at how outages are distributed over time:
 
 Outage frequency peaks in summer, likely reflecting storm seasons, while average duration spikes in winter--potentially due to ice storms and slower repairs.
 
-## Bivariate Analysis
+### Bivariate Analysis
 
 To examine cause-specific impacts:
 
@@ -44,9 +57,9 @@ Weather-related outages generally have higher durations than equipment failures 
 
 We also explored how outage causes vary over time and geography:
 
-<iframe src="assets/plots/bivar/Distribution_of_Each_Cause_Category_by_Month_%.html" width="100%" height="100%" frameborder="0"></iframe>  
-<iframe src="assets/plots/bivar/Distribution_of_Each_Cause_Category_by_Climate_Region_%.html" width="100%" height="100%" frameborder="0"></iframe>  
-<iframe src="assets/plots/bivar/Distribution_of_Each_Cause_Category_by_Year_%.html" width="100%" height="100%" frameborder="0"></iframe>
+<iframe src="assets/plots/bivar/Distribution_of_Each_Cause_Category_by_Month_pct.html" width="100%" height="100%" frameborder="0"></iframe>  
+<iframe src="assets/plots/bivar/Distribution_of_Each_Cause_Category_by_Climate_Region_pct.html" width="100%" height="100%" frameborder="0"></iframe>  
+<iframe src="assets/plots/bivar/Distribution_of_Each_Cause_Category_by_Year_pct.html" width="100%" height="100%" frameborder="0"></iframe>
 
 Finally, we visualized how time-of-day and work hours influence outage durations:
 
@@ -54,7 +67,7 @@ Finally, we visualized how time-of-day and work hours influence outage durations
 
 Outages during off-hours tend to last longer, especially in certain climate zones.
 
-## Aggregated Tables
+### Aggregated Tables
 
 We aggregated data to understand regional variation in outage impact:
 
@@ -65,14 +78,14 @@ We aggregated data to understand regional variation in outage impact:
 
 These summaries helped us identify which combinations of region and cause led to particularly long or severe outages.
 
-# Framing a Prediction Problem
+## Framing a Prediction Problem
 
 We framed a **regression** problem:  
 **Predict the outage duration (in hours)** based on available metadata *known at the time of the outage.*
 
 This problem has practical importance: better duration forecasts allow for smarter resource allocation and improved communication with customers. The target variable is `outage.duration`, and we evaluated models using **Mean Squared Error (MSE)**, to capture the size of deviation in duration estimates.
 
-# Baseline Model
+## Baseline Model
 
 We built a pipeline using a **Gradient Boosting Regressor**, including both categorical encodings and numerical standardization.
 
@@ -89,11 +102,11 @@ The baseline model’s best parameters were:
 
 The test MSE: **10,625**
 
-## Performance Visualization
+### Performance Visualization
 
 <iframe src="assets/plots/eval/Actual_vs_Predicted_Outage_Duration_with_Absolute_Error.html" width="100%" height="100%" frameborder="0"></iframe>
 
-# Final Model
+## Final Model
 
 To improve on our baseline, we engineered six new features:
 
@@ -106,11 +119,6 @@ To improve on our baseline, we engineered six new features:
 
 The same model architecture and hyperparameter grid were used. Final MSE: **10,410**, an improvement over the baseline.
 
-## Comparison Visualization
+### Comparison Visualization
 
 <iframe src="assets/plots/eval/plot_1_2025-04-19_18-19-23.644105.html" width="100%" height="100%" frameborder="0"></iframe>
-
----
-
-**Thank you for reading!**  
-Please reach out if you have questions or want to build on this work.
