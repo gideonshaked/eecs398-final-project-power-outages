@@ -4,10 +4,3 @@ plugins:
 
 title: "Forecasting Power Outage Duration Using Predictive Models"
 description: "Predicting the duration of power outages using machine learning"
-
-just_the_docs:
-  search_enabled: false
-  heading_anchors: true
-  aux_links:
-    "GitHub":
-      - "https://github.com/your-repo"
