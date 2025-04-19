@@ -35,15 +35,15 @@ The dataset spans major U.S. power outages from 2000 to 2016 and contains detail
 
 We began by visualizing the distribution of outage durations:
 
-<iframe src="assets/plots/univar/Outage_Duration.html" width="100%" height="100%" scrolling="no" frameborder="0"></iframe>
+<iframe src="assets/plots/univar/Outage_Duration_1400x700.html" width="1400" height="700" frameborder="0"></iframe>
 
 Outages typically last under 3 days, though long tails exist due to extreme events.
 
 We also looked at how outages are distributed over time:
 
-<iframe src="assets/plots/univar/Power_Outages_by_Year.html" width="100%" height="100%" frameborder="0"></iframe>
+<iframe src="assets/plots/univar/Power_Outages_by_Year_1000x400.html" width="1000" height="400" frameborder="0"></iframe>
 
-<iframe src="assets/plots/univar/Average_Outage_Duration_by_Month.html" width="100%" height="100%" frameborder="0"></iframe>
+<iframe src="assets/plots/univar/Average_Outage_Duration_by_Month_1400x700.html" width="1400" height="700" frameborder="0"></iframe>
 
 Outage frequency peaks in summer, likely reflecting storm seasons, while average duration spikes in winter--potentially due to ice storms and slower repairs.
 
@@ -51,19 +51,19 @@ Outage frequency peaks in summer, likely reflecting storm seasons, while average
 
 To examine cause-specific impacts:
 
-<iframe src="assets/plots/bivar/Outage_Duration_by_Cause_Category.html" width="100%" height="100%" frameborder="0"></iframe>
+<iframe src="assets/plots/bivar/Outage_Duration_by_Cause_Category_1400x700.html" width="1400" height="700" frameborder="0"></iframe>
 
 Weather-related outages generally have higher durations than equipment failures or intentional attacks.
 
 We also explored how outage causes vary over time and geography:
 
-<iframe src="assets/plots/bivar/Distribution_of_Each_Cause_Category_by_Month_pct.html" width="100%" height="100%" frameborder="0"></iframe>  
-<iframe src="assets/plots/bivar/Distribution_of_Each_Cause_Category_by_Climate_Region_pct.html" width="100%" height="100%" frameborder="0"></iframe>  
-<iframe src="assets/plots/bivar/Distribution_of_Each_Cause_Category_by_Year_pct.html" width="100%" height="100%" frameborder="0"></iframe>
+<iframe src="assets/plots/bivar/Distribution_of_Each_Cause_Category_by_Month_pct_1000x600.html" width="1000" height="600" frameborder="0"></iframe>
+<iframe src="assets/plots/bivar/Distribution_of_Each_Cause_Category_by_Climate_Region_pct_1000x600.html" width="1000" height="600" frameborder="0"></iframe>
+<iframe src="assets/plots/bivar/Distribution_of_Each_Cause_Category_by_Year_pct_1000x600.html" width="1000" height="600" frameborder="0"></iframe>
 
 Finally, we visualized how time-of-day and work hours influence outage durations:
 
-<iframe src="assets/plots/bivar/Outage_Duration_Distribution-_Work_Hours_vs_Off_Hours_by_Region.html" width="100%" height="100%" frameborder="0"></iframe>
+<iframe src="assets/plots/bivar/Outage_Duration_Distribution-_Work_Hours_vs_Off_Hours_by_Region_1000x600.html" width="1000" height="600" frameborder="0"></iframe>
 
 Outages during off-hours tend to last longer, especially in certain climate zones.
 
@@ -104,7 +104,7 @@ The test MSE: **10,625**
 
 ### Performance Visualization
 
-<iframe src="assets/plots/eval/Actual_vs_Predicted_Outage_Duration_with_Absolute_Error.html" width="100%" height="100%" frameborder="0"></iframe>
+<iframe src="assets/plots/eval/Actual_vs_Predicted_Outage_Duration_with_Absolute_Error_1000x700.html" width="1000" height="700" frameborder="0"></iframe>
 
 ## Final Model
 
@@ -121,4 +121,4 @@ The same model architecture and hyperparameter grid were used. Final MSE: **10,4
 
 ### Comparison Visualization
 
-<iframe src="assets/plots/eval/plot_1_2025-04-19_18-19-23.644105.html" width="100%" height="100%" frameborder="0"></iframe>
+<iframe src="assets/plots/eval/plot_1_2025-04-19_19-22-38.867170_1200x700.html" width="1200" height="700" frameborder="0"></iframe>
