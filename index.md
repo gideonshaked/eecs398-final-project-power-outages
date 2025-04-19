@@ -35,7 +35,7 @@ The dataset spans major U.S. power outages from 2000 to 2016 and contains detail
 
 We began by visualizing the distribution of outage durations:
 
-<iframe src="assets/plots/univar/Outage_Duration.html" width="100%" height="100%" frameborder="0"></iframe>
+<iframe src="assets/plots/univar/Outage_Duration.html" width="100%" height="100%" scrolling="no" frameborder="0"></iframe>
 
 Outages typically last under 3 days, though long tails exist due to extreme events.
 
