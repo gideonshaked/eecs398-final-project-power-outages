@@ -162,7 +162,7 @@ This problem has practical importance: better duration forecasts allow for smart
 
 ### Evaluation Metrics
 
-Specifically, we predicted the target variable `outage.duration`. To assess model performance, we used **Root Mean Squared Error (RMSE)** and the **Coefficient of Determination**.
+Specifically, we predicted the target variable `outage.duration`. To assess model performance, we used **root mean squared error (RMSE)** and the **coefficient of determination**.
 
 #### Root Mean Squared Error (RMSE)
 
