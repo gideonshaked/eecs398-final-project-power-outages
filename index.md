@@ -72,7 +72,7 @@ For **numeric features**, we used mean imputation to fill in missing values. Thi
 
 For **categorical features**, we filled missing values with the placeholder `missing`. This allowed us to treat the absence of a value as a meaningful category, rather than attempting to guess the correct label or remove the row. We used this method to ensure that all categorical variables remained complete and could be cleanly encoded without introducing ambiguity or inconsistencies in the dataset. Essentially, we **did not impute** categorical features.
 
-### Numeric Imputation Visualization
+#### Numeric Imputation Visualization
 
 Below we have the frequency of the features that needed to be imputed, before and after imputation. As you can see, the distribution of each of the features did not change much, which further validates our choice of mean imputation.
 
