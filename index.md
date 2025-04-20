@@ -19,24 +19,24 @@ This project investigates the question of **how different aspects of an outage (
 
 The dataset spans major U.S. power outages from 2000 to 2016 and contains detailed outage characteristics including cause, duration, geographic metadata, and economic indicators.
 
-- **Data Size**: 1,535 outage events  
+- **Data Size:** 1,535 outage events  
 - **Relevant Columns**
-  - **`outage.start.date`**: The date that the outage started.
-  - **`outage.start.date`**: The time that the outage started.
-  - **`u.s._state`**: Full name of the U.S. state where the outage occurred.
-  - **`postal.code`**: State-level postal code abbreviation (e.g. MI, CA).
-  - **`nerc.region`**: NERC (North American Electric Reliability Corporation) reliability region associated with the outage.
-  - **`climate.region`**: Climate region classification based on geography (e.g. Southeast, Northwest).
-  - **`anomaly.level`**: A numerical indicator of how abnormal the weather was relative to historical averages.
-  - **`climate.category`**: Broader climate category classification used in the dataset.
-  - **`hurricane.names`**: Name of the hurricane associated with the outage, if any.
-  - **`cause.category`**: High-level classification of outage cause (e.g. Severe Weather, Equipment Failure).
-  - **`cause.category.detail`**: More specific cause label (e.g. Lightning, Thunderstorm, Vandalism).
-  - **`demand.loss.mw`**: The megawatts of electricity demand lost during the outage.
-  - **`population`**: Total population in the affected area.
-  - **`popden_urban`**: Urban population density (people per square mile).
-  - **`popden_rural`**: Rural population density (people per square mile).
-  - **`poppct_urban`**: Percentage of the local population living in urban areas.
+  - **`outage.start.date`:** The date that the outage started.
+  - **`outage.start.date`:** The time that the outage started.
+  - **`u.s._state`:** Full name of the U.S. state where the outage occurred.
+  - **`postal.code`:** State-level postal code abbreviation (e.g. MI, CA).
+  - **`nerc.region`:** NERC (North American Electric Reliability Corporation) reliability region associated with the outage.
+  - **`climate.region`:** Climate region classification based on geography (e.g. Southeast, Northwest).
+  - **`anomaly.level`:** A numerical indicator of how abnormal the weather was relative to historical averages.
+  - **`climate.category`:** Broader climate category classification used in the dataset.
+  - **`hurricane.names`:** Name of the hurricane associated with the outage, if any.
+  - **`cause.category`:** High-level classification of outage cause (e.g. Severe Weather, Equipment Failure).
+  - **`cause.category.detail`:** More specific cause label (e.g. Lightning, Thunderstorm, Vandalism).
+  - **`demand.loss.mw`:** The megawatts of electricity demand lost during the outage.
+  - **`population`:** Total population in the affected area.
+  - **`popden_urban`:** Urban population density (people per square mile).
+  - **`popden_rural`:** Rural population density (people per square mile).
+  - **`poppct_urban`:** Percentage of the local population living in urban areas.
 
 ## Data Cleaning and Exploratory Data Analysis
 
@@ -172,7 +172,7 @@ $$
 \text{RMSE} = \sqrt{\frac{1}{n} \sum_{i=1}^n (\hat{y}_i - y_i)^2}
 $$
 
-- **Advantages**: RMSE is intuitive and retains the original units of the target variable, making it easy to interpret. It is particularly useful when large errors are undesirable, as it emphasizes them more than metrics like Mean Absolute Error (MAE).
+- **Advantages:** RMSE is intuitive and retains the original units of the target variable, making it easy to interpret. It is particularly useful when large errors are undesirable, as it emphasizes them more than metrics like Mean Absolute Error (MAE).
 
 #### Coefficient of Determination
 
@@ -182,7 +182,7 @@ $$
 R^2 = 1 - \frac{\sum_{i=1}^n (\hat{y}_i - y_i)^2}{\sum_{i=1}^n (y_i - \bar{y})^2}
 $$
 
-- **Advantages**: The coefficient of determination provides a normalized measure of fit, ranging from 0 (no explanatory power) to 1 (perfect prediction). It complements RMSE by showing how well the model captures overall variance rather than just minimizing error.
+- **Advantages:** The coefficient of determination provides a normalized measure of fit, ranging from 0 (no explanatory power) to 1 (perfect prediction). It complements RMSE by showing how well the model captures overall variance rather than just minimizing error.
 
 Together, RMSE and the coefficient of determination offer a comprehensive view of model performance, with one emphasizing prediction error magnitude, and the other explaining variance captured.
 
