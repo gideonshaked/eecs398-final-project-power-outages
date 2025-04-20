@@ -2,6 +2,15 @@
 
 **Author:** Gideon Shaked ([gshaked@umich.edu](mailto:gshaked@umich.edu))
 
+<details open markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+1. TOC
+{:toc}
+</details>
+
 ## Introduction
 
 Power outages are costly disruptions that can stem from various causes, ranging from severe weather to technical failures. Understanding the relationships between the *cause* of an outage and its *impact*, both in terms of restoration time and number of customers affected, is vital for both policymakers and utility companies.
@@ -64,7 +73,7 @@ Finally, we visualized how time-of-day and work hours influence outage durations
 
 <iframe src="assets/plots/bivar/Outage_Duration_Distribution-_Work_Hours_vs_Off_Hours_by_Region_700x350.html" width="700" height="350" frameborder="0" scrolling="no"></iframe>
 
-Outages during off-hours tend to last longer, especially in certain climate zones.
+It looks lie outages during off-hours tend to last longer, especially in certain climate zones.
 
 ### Aggregated Tables
 
@@ -103,7 +112,7 @@ This table tracks the scale of impact by showing the number of customers affecte
 | West               |            198608   |                     0   |           14060      |     5039.19 |            0    |         361041   |                        152040   |
 | West North Central |                 0   |                     0   |               0      |        0    |        34500    |          74178   |                             0   |
 
-## Framing the Problem
+## Framing a Prediction Problem
 
 We decided to frame a regression problem:
 
@@ -113,10 +122,47 @@ This problem has practical importance: better duration forecasts allow for smart
 
 ## Baseline Model
 
-We built a pipeline using a **Gradient Boosting Regressor**, including both categorical encodings and numerical standardization.
+### Feature Selection
 
-- **Quantitative features**: year, hour, anomaly level, demand loss, urban %  
-- **Categorical features**: state, postal code, cause, climate zone, etc.  
+The dataset includes **21 features** used to predict the target variable: `outage.duration`.
+
+#### Quantitative Features (7)
+
+These features are continuous or count-based. Missing values were imputed using the mean, and values were standardized using `StandardScaler`.
+
+- `year`
+- `month`
+- `hour`
+- `demand.loss.mw`
+- `population`
+- `popden_urban`
+- `popden_rural`
+
+#### Nominal Categorical Features (14)
+
+These features have no intrinsic order. They were encoded using `OneHotEncoder`.
+
+- `season`
+- `day_period`
+- `is_work_hours`
+- `is_weekend`
+- `u.s._state`
+- `postal.code`
+- `nerc.region`
+- `climate.region`
+- `climate.category`
+- `hurricane.names`
+- `cause.category`
+- `cause.category.detail`
+- `poppct_urban`
+- `anomaly.level`
+  - Note: this feature is technically ordinal, but treating it as such made the MSE increase massively so it was encoded as nominal.
+
+#### Target Variable
+
+- `outage.duration`: The duration of the power outage in hours (regression target).
+
+### Model Parameters and Performance
 
 The baseline model’s best parameters were:
 
@@ -129,6 +175,8 @@ The baseline model’s best parameters were:
 The test MSE: **10,625**
 
 ### Performance Visualization
+
+The following plot shows the model performance for outage duration over time. We can see that the model tends to fail to predict outlier events, which suggests that there is an extraneous variable influencing the outage duration that is not given in our dataset. Overall, I think that this model's performance is good.
 
 <iframe src="assets/plots/eval/Actual_vs_Predicted_Outage_Duration_with_Absolute_Error_900x800.html" width="900" height="800" frameborder="0" scrolling="no"></iframe>
 
