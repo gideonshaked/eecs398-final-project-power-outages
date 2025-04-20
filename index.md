@@ -184,7 +184,7 @@ $$
 
 - **Advantages**: The coefficient of determination provides a normalized measure of fit, ranging from 0 (no explanatory power) to 1 (perfect prediction). It complements RMSE by showing how well the model captures overall variance rather than just minimizing error.
 
-Together, RMSE and coefficient of determination offer a comprehensive view of model performance, with one emphasizing prediction error magnitude, and the other explaining variance captured.
+Together, RMSE and the coefficient of determination offer a comprehensive view of model performance, with one emphasizing prediction error magnitude, and the other explaining variance captured.
 
 ## Baseline Model
 
