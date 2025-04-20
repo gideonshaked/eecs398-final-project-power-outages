@@ -186,7 +186,7 @@ Additionally, gradient boosting supports feature importance analysis, aiding int
 
 We selected **21 features** used to predict the target variable: `outage.duration`.
 
-#### Quantitative Features (7)
+#### Quantitative Features (9)
 
 These features are continuous or count-based. Missing values were imputed using the mean, and values were standardized using `StandardScaler`.
 
@@ -197,8 +197,10 @@ These features are continuous or count-based. Missing values were imputed using 
 - `population`
 - `popden_urban`
 - `popden_rural`
+- `poppct_urban`
+- `anomaly.level`
 
-#### Nominal Categorical Features (14)
+#### Nominal Categorical Features (12)
 
 These features have no intrinsic order. They were encoded using `OneHotEncoder`.
 
@@ -214,9 +216,6 @@ These features have no intrinsic order. They were encoded using `OneHotEncoder`.
 - `hurricane.names`
 - `cause.category`
 - `cause.category.detail`
-- `poppct_urban`
-- `anomaly.level`
-  - Note: this feature is technically ordinal, but treating it as such made the RMSE increase massively so we encoded it as nominal. This likely happened because ordinal encoding imposes a linear order on the categories (e.g., low < medium < high), which assumes that the effect of moving from one level to the next is consistent and meaningful in magnitude. However, in practice, the relationship between anomaly level and outage duration may be nonlinear or inconsistent. For example, moving from medium to high may have a much larger or smaller impact than from low to medium. Treating the feature as nominal using one-hot encoding allowed the model to learn separate effects for each level without imposing an artificial structure, resulting in better performance.
 
 #### Target Variable
 
