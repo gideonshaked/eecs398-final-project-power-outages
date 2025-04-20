@@ -103,10 +103,11 @@ This table tracks the scale of impact by showing the number of customers affecte
 | West               |            198608   |                     0   |           14060      |     5039.19 |            0    |         361041   |                        152040   |
 | West North Central |                 0   |                     0   |               0      |        0    |        34500    |          74178   |                             0   |
 
-## Framing a Prediction Problem
+## Framing the Problem
 
-We framed a **regression** problem:  
-**Predict the outage duration (in hours)** based on available metadata *known at the time of the outage.*
+We decided to frame a regression problem:
+
+> Given all of the data known at the time of the outage, predict the duration of the outage.
 
 This problem has practical importance: better duration forecasts allow for smarter resource allocation and improved communication with customers. The target variable is `outage.duration`, and we evaluated models using **Mean Squared Error (MSE)**, to capture the size of deviation in duration estimates.
 
