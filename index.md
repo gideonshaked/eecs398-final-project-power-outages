@@ -174,6 +174,16 @@ Together, RMSE and $R^2$ offer a comprehensive view of model performance, with o
 
 ## Baseline Model
 
+### Model Selection
+
+### Model Choice: Gradient Boosting Regressor
+
+I selected a **Gradient Boosting Regressor** for this task due to its strong performance on structured, tabular datasets and its ability to model complex nonlinear relationships. Gradient boosting builds an ensemble of decision trees in a sequential manner, where each new tree corrects the errors of the previous ones. This results in a highly flexible and powerful model capable of capturing subtle patterns in the data.
+
+Given the mix of numeric, categorical, and engineered features (some with high cardinality and others with skewed distributions) gradient boosting offers robustness without requiring extensive feature scaling or transformation. It also handles interactions between variables well, which is important in a dataset where multiple factors (e.g., weather, population, time of day) may jointly influence outage duration.
+
+Additionally, gradient boosting supports feature importance analysis, aiding interpretability and helping identify key drivers of model predictions.
+
 ### Feature Selection and Encoding
 
 We selected **21 features** used to predict the target variable: `outage.duration`.
@@ -245,7 +255,11 @@ That being said, for the majority of outages the model's performance is decent. 
 
 ## Final Model
 
-### Engineered Features and Justifications
+After evaluating several modeling options, we retained the **Gradient Boosting Regressor** in the final pipeline due to its superior performance on key evaluation metrics, particularly RMSE and $R^2$. Despite some limitations in capturing all variance (as reflected in a lower $R^2$), the model consistently delivered low absolute prediction error, indicating strong predictive utility.
+
+Gradient boosting effectively handled the dataset’s mix of numeric and categorical features, including engineered variables with skewed distributions and nonlinear effects. Its ability to model complex interactions between features made it especially well-suited to this multifactorial problem.
+
+### Engineered Features
 
 | Feature Name        | Description                                              | Justification                                                                                   |
 |---------------------|----------------------------------------------------------|--------------------------------------------------------------------------------------------------|
