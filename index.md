@@ -35,14 +35,14 @@ The dataset spans major U.S. power outages from 2000 to 2016 and contains detail
 
 We began by visualizing the distribution of outage durations:
 
-<iframe src="assets/plots/univar/Outage_Duration_1400x700.html" width="1400" height="700" frameborder="0" scrolling="no"></iframe>
+<iframe src="assets/plots/univar/Outage_Duration_700x350.html" width="700" height="350" frameborder="0" scrolling="no"></iframe>
 
 Outages typically last under 3 days, though long tails exist due to extreme events.
 
 We also looked at how outages are distributed over time:
 
-<iframe src="assets/plots/univar/Power_Outages_by_Year_1000x400.html" width="1000" height="400" frameborder="0" scrolling="no"></iframe>
-<iframe src="assets/plots/univar/Average_Outage_Duration_by_Month_1400x700.html" width="1400" height="700" frameborder="0" scrolling="no"></iframe>
+<iframe src="assets/plots/univar/Power_Outages_by_Year_700x350.html" width="700" height="350" frameborder="0" scrolling="no"></iframe>
+<iframe src="assets/plots/univar/Average_Outage_Duration_by_Month_700x350.html" width="700" height="350" frameborder="0" scrolling="no"></iframe>
 
 Outage frequency peaks in summer, likely reflecting storm seasons, while average duration spikes in winter--potentially due to ice storms and slower repairs.
 
@@ -50,56 +50,58 @@ Outage frequency peaks in summer, likely reflecting storm seasons, while average
 
 To examine cause-specific impacts:
 
-<iframe src="assets/plots/bivar/Outage_Duration_by_Cause_Category_1400x700.html" width="1400" height="700" frameborder="0" scrolling="no"></iframe>
+<iframe src="assets/plots/bivar/Outage_Duration_by_Cause_Category_700x350.html" width="700" height="350" frameborder="0" scrolling="no"></iframe>
 
 Weather-related outages generally have higher durations than equipment failures or intentional attacks.
 
 We also explored how outage causes vary over time and geography:
 
-<iframe src="assets/plots/bivar/Distribution_of_Each_Cause_Category_by_Month_pct_1000x600.html" width="1000" height="600" frameborder="0" scrolling="no"></iframe>
-<iframe src="assets/plots/bivar/Distribution_of_Each_Cause_Category_by_Climate_Region_pct_1000x600.html" width="1000" height="600" frameborder="0" scrolling="no"></iframe>
-<iframe src="assets/plots/bivar/Distribution_of_Each_Cause_Category_by_Year_pct_1000x600.html" width="1000" height="600" frameborder="0" scrolling="no"></iframe>
+<iframe src="assets/plots/bivar/Distribution_of_Each_Cause_Category_by_Month_pct_700x350.html" width="700" height="350" frameborder="0" scrolling="no"></iframe>
+<iframe src="assets/plots/bivar/Distribution_of_Each_Cause_Category_by_Climate_Region_pct_700x350.html" width="700" height="350" frameborder="0" scrolling="no"></iframe>
+<iframe src="assets/plots/bivar/Distribution_of_Each_Cause_Category_by_Year_pct_700x350.html" width="700" height="350" frameborder="0" scrolling="no"></iframe>
 
 Finally, we visualized how time-of-day and work hours influence outage durations:
 
-<iframe src="assets/plots/bivar/Outage_Duration_Distribution-_Work_Hours_vs_Off_Hours_by_Region_1000x600.html" width="1000" height="600" frameborder="0" scrolling="no"></iframe>
+<iframe src="assets/plots/bivar/Outage_Duration_Distribution-_Work_Hours_vs_Off_Hours_by_Region_700x350.html" width="700" height="350" frameborder="0" scrolling="no"></iframe>
 
 Outages during off-hours tend to last longer, especially in certain climate zones.
 
 ### Aggregated Tables
 
-We aggregated data to understand regional variation in outage impact.
+We aggregated data to understand regional variation in outage impact, which helped us identify which combinations of region and cause led to particularly long or severe outages.
 
-#### Climate Region & Cause Analysis here
+#### Number of Days Affected by Cause and Climate Region
 
-| climate.region     |   equipment failure |   fuel supply emergency |   intentional attack |   islanding |
-public appeal |   severe weather |   system operability disruption |
-|:-------------------|--------------------:|------------------------:|---------------------:|------------:|--------
---------:|-----------------:|--------------------------------:|
-| Central            |                   5 |                       4 |                   34 |           3 |
-2 |              133 |                              10 |
-| East North Central |                   3 |                       4 |                   20 |           1 |
-2 |              104 |                               3 |
-| Northeast          |                   5 |                      14 |                  131 |           1 |
-4 |              175 |                              14 |
-| Northwest          |                   2 |                       1 |                   85 |           3 |
-2 |               25 |                               4 |
-| South              |                   9 |                       4 |                   28 |           2 |
-42 |              106 |                              27 |
-| Southeast          |                   4 |                       0 |                    9 |           0 |
-5 |              116 |                              16 |
-| Southwest          |                   5 |                       1 |                   61 |           1 |
-1 |               10 |                               9 |
-| West               |                  21 |                      10 |                   31 |          28 |
-9 |               67 |                              39 |
-| West North Central |                   1 |                       0 |                    4 |           5 |
-2 |                4 |                               0 |
+This table shows how many days each climate region was affected by different types of power outage causes. It provides insight into which causes are most frequent across regions. For example, severe weather is consistently a leading cause, especially in the Northeast, Southeast, and Central regions.
 
-- <table on Seasonal Duration here>
-- <table on Economic Impact (sales, price, customers) here>
-- <table on Impact Severity Score (duration × affected fraction) here>
+| Climate Region       | Equipment Failure | Fuel Supply Emergency | Intentional Attack | Islanding | Public Appeal | Severe Weather | System Operability Disruption |
+|----------------------|------------------:|-----------------------:|-------------------:|----------:|--------------:|----------------:|-------------------------------:|
+|:-------------------|--------------------:|------------------------:|---------------------:|------------:|----------------:|-----------------:|--------------------------------:|
+| Central            |                   5 |                       4 |                   34 |           3 |               2 |              133 |                              10 |
+| East North Central |                   3 |                       4 |                   20 |           1 |               2 |              104 |                               3 |
+| Northeast          |                   5 |                      14 |                  131 |           1 |               4 |              175 |                              14 |
+| Northwest          |                   2 |                       1 |                   85 |           3 |               2 |               25 |                               4 |
+| South              |                   9 |                       4 |                   28 |           2 |              42 |              106 |                              27 |
+| Southeast          |                   4 |                       0 |                    9 |           0 |               5 |              116 |                              16 |
+| Southwest          |                   5 |                       1 |                   61 |           1 |               1 |               10 |                               9 |
+| West               |                  21 |                      10 |                   31 |          28 |               9 |               67 |                              39 |
+| West North Central |                   1 |                       0 |                    4 |           5 |               2 |                4 |                               0 |
 
-These summaries helped us identify which combinations of region and cause led to particularly long or severe outages.
+#### Number of Customers Affected by Cause and Climate Region
+
+This table tracks the scale of impact by showing the number of customers affected in each climate region for each cause of power outage. It complements the first table by highlighting not just the frequency of outages but the magnitude. For instance, although equipment failures occurred less frequently in the West, they affected a large number of customers, showing the importance of evaluating not just how often events happen, but how severe they are in terms of customer impact.
+
+| Climate Region       | Equipment Failure | Fuel Supply Emergency | Intentional Attack | Islanding | Public Appeal | Severe Weather | System Operability Disruption |
+|:-------------------|--------------------:|------------------------:|---------------------:|------------:|----------------:|-----------------:|--------------------------------:|
+| Central            |             87750   |                     0   |             110.714  |     9666.67 |            0    |         148707   |                        210450   |
+| East North Central |                 0   |                     0   |             660.111  |        0    |         7600    |         134972   |                        759738   |
+| Northeast          |             28575.8 |                     0.5 |            1055.58   |        0    |        18600    |         169467   |                        530759   |
+| Northwest          |             46651.5 |                     0   |              92.5926 |        0    |         4000    |         169284   |                         35000   |
+| South              |             62721.7 |                     0   |            1042.83   |    14500    |         4917.64 |         223231   |                        227102   |
+| Southeast          |            145420   |                     0   |               0      |        0    |            0    |         206523   |                         75555.5 |
+| Southwest          |             55666.7 |                     0   |             327.423  |    35230    |            0    |          85138.4 |                        135656   |
+| West               |            198608   |                     0   |           14060      |     5039.19 |            0    |         361041   |                        152040   |
+| West North Central |                 0   |                     0   |               0      |        0    |        34500    |          74178   |                             0   |
 
 ## Framing a Prediction Problem
 
@@ -127,7 +129,7 @@ The test MSE: **10,625**
 
 ### Performance Visualization
 
-<iframe src="assets/plots/eval/Actual_vs_Predicted_Outage_Duration_with_Absolute_Error_1000x700.html" width="1000" height="700" frameborder="0" scrolling="no"></iframe>
+<iframe src="assets/plots/eval/Actual_vs_Predicted_Outage_Duration_with_Absolute_Error_700x350.html" width="700" height="350" frameborder="0" scrolling="no"></iframe>
 
 ## Final Model
 
@@ -144,7 +146,7 @@ The same model architecture and hyperparameter grid were used. Final MSE: **10,4
 
 ### Comparison Visualization
 
-<iframe src="assets/plots/eval/plot_1_2025-04-19_19-22-38.867170_1200x700.html" width="1200" height="700" frameborder="0" scrolling="no"></iframe>
+<iframe src="assets/plots/eval/plot_1_2025-04-19_19-22-38.867170_700x350.html" width="700" height="350" frameborder="0" scrolling="no"></iframe>
 
 ## Conclusion
 
