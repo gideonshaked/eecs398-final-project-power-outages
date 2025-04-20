@@ -1,4 +1,4 @@
-# Forecasting Power Outage Duration Using Predictive Models
+# Forecasting Power Outage Duration with Predictive Models
 
 **Author:** Gideon Shaked ([gshaked@umich.edu](mailto:gshaked@umich.edu))
 
