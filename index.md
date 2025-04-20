@@ -160,7 +160,7 @@ $$
 
 - **Advantages**: RMSE is intuitive and retains the original units of the target variable, making it easy to interpret. It is particularly useful when large errors are undesirable, as it emphasizes them more than metrics like Mean Absolute Error (MAE).
 
-#### Coefficient of Determination ($R^2$)
+#### Coefficient of Determination
 
 $R^2$ measures how well the model explains the variability of the target variable:
 
