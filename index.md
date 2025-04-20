@@ -66,9 +66,17 @@ This is the first five rows of the cleaned data.
 
 ### Missing Values & Imputation
 
-For **numeric features**, we used mean imputation to fill in missing values. This method replaces any missing entry with the average of the available values in that column. We chose this approach because it is simple, preserves the scale and distribution of the data, and avoids discarding any records due to incomplete information. It ensures that we maintain consistency across the dataset without introducing artificial patterns or relying on external assumptions.
+#### Imputation Methods
 
-For **categorical features**, we applied constant imputation by filling missing values with the placeholder `missing`. This allowed us to treat the absence of a value as a meaningful category, rather than attempting to guess the correct label or remove the row. We used this method to ensure that all categorical variables remained complete and could be cleanly encoded without introducing ambiguity or inconsistencies in the dataset.
+For **numeric features**, we used mean imputation to fill in missing values. This method replaces any missing entry with the average of the available values in that column. We chose this approach because it is simple, preserves the scale and distribution of the data, and avoids discarding any records due to incomplete information. It ensures that we maintain consistency across the dataset without introducing artificial patterns or relying on external assumptions. In our case, the missing values appeared to be missing completely at random (MCAR). This made mean imputation an appropriate and statistically sound choice.
+
+For **categorical features**, we filled missing values with the placeholder `missing`. This allowed us to treat the absence of a value as a meaningful category, rather than attempting to guess the correct label or remove the row. We used this method to ensure that all categorical variables remained complete and could be cleanly encoded without introducing ambiguity or inconsistencies in the dataset. Essentially, we **did not impute** categorical features.
+
+### Numeric Imputation Visualization
+
+Below we have the frequency of the features that needed to be imputed, before and after imputation. As you can see, the distribution of each of the features did not change much, which further validates our choice of mean imputation.
+
+<iframe src="assets/plots/univar/numeric_features_imputation_700x900.html" width="700" height="900" frameborder="0" scrolling="no"></iframe>
 
 ### Univariate Analysis
 
