@@ -178,7 +178,7 @@ The test MSE: **10,625**
 
 The following plot shows the model performance for outage duration over time. We can see that the model tends to fail to predict outlier events, which suggests that there is an extraneous variable influencing the outage duration that is not given in our dataset. Overall, I think that this model's performance is good.
 
-<iframe src="assets/plots/eval/Actual_vs_Predicted_Outage_Duration_with_Absolute_Error_900x800.html" width="900" height="800" frameborder="0" scrolling="no"></iframe>
+<iframe src="assets/plots/eval/eval_outage_duration_900x800.html" width="900" height="800" frameborder="0" scrolling="no"></iframe>
 
 ## Final Model
 
