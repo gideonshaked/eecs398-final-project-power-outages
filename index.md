@@ -162,13 +162,13 @@ $$
 
 #### Coefficient of Determination
 
-coefficient of determination measures how well the model explains the variability of the target variable:
+The coefficient of determination measures how well the model explains the variability of the target variable:
 
 $$
 R^2 = 1 - \frac{\sum_{i=1}^n (\hat{y}_i - y_i)^2}{\sum_{i=1}^n (y_i - \bar{y})^2}
 $$
 
-- **Advantages**: coefficient of determination provides a normalized measure of fit, ranging from 0 (no explanatory power) to 1 (perfect prediction). It complements RMSE by showing how well the model captures overall variance rather than just minimizing error.
+- **Advantages**: The coefficient of determination provides a normalized measure of fit, ranging from 0 (no explanatory power) to 1 (perfect prediction). It complements RMSE by showing how well the model captures overall variance rather than just minimizing error.
 
 Together, RMSE and coefficient of determination offer a comprehensive view of model performance, with one emphasizing prediction error magnitude, and the other explaining variance captured.
 
@@ -237,7 +237,7 @@ After performing a grid search with 5-fold cross-validation, the baseline model�
 #### Performance Metrics
 
 - **RMSE:** 103.01
-- **coefficient of determination:** 0.37
+- **Coefficient of determination:** 0.37
 
 #### Performance Visualization
 
@@ -253,7 +253,7 @@ That being said, for the majority of outages the model's performance is decent. 
 
 ## Final Model
 
-After evaluating several modeling options, we retained the **Gradient Boosting Regressor** in the final pipeline due to its superior performance on key evaluation metrics, particularly RMSE and coefficient of determination. Despite some limitations in capturing all variance (as reflected in a lower coefficient of determination), the model consistently delivered low absolute prediction error, indicating strong predictive utility.
+After evaluating several modeling options, we retained the **Gradient Boosting Regressor** in the final pipeline due to its superior performance on key evaluation metrics, particularly RMSE and coefficient of determination. Despite some limitations in capturing all variance (as reflected by a lower coefficient of determination), the model consistently delivered low absolute prediction error, indicating strong predictive utility.
 
 Gradient boosting effectively handled the dataset’s mix of numeric and categorical features, including engineered variables with skewed distributions and nonlinear effects. Its ability to model complex interactions between features made it especially well-suited to this multifactorial problem.
 
@@ -285,7 +285,7 @@ After performing a grid search with 5-fold cross-validation, the final model’s
 #### Performance Metrics
 
 - **RMSE:** 102.00
-- **coefficient of determination:** 0.38
+- **Coefficient of determination:** 0.38
 
 #### Performance Visualization
 
