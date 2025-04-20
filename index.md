@@ -122,9 +122,9 @@ This problem has practical importance: better duration forecasts allow for smart
 
 ## Baseline Model
 
-### Feature Selection
+### Feature Selection and Encoding
 
-The dataset includes **21 features** used to predict the target variable: `outage.duration`.
+We selected **21 features** used to predict the target variable: `outage.duration`.
 
 #### Quantitative Features (7)
 
@@ -160,11 +160,39 @@ These features have no intrinsic order. They were encoded using `OneHotEncoder`.
 
 #### Target Variable
 
-- `outage.duration`: The duration of the power outage in hours (regression target).
+- `outage.duration`: The duration of the power outage in hours (regression target -- quantitative).
 
-### Model Parameters and Performance
+### Evaluation Metrics
 
-The baseline model’s best parameters were:
+To assess model performance, I used **Root Mean Squared Error (RMSE)** and the **Coefficient of Determination ($R^2$)**.
+
+#### Root Mean Squared Error (RMSE)
+
+RMSE is a widely used metric that measures the average magnitude of the prediction error, with larger errors penalized more heavily due to squaring. It is defined as:
+
+$$
+\text{RMSE} = \sqrt{\frac{1}{n} \sum_{i=1}^n (\hat{y}_i - y_i)^2}
+$$
+
+- **Advantages**: RMSE is intuitive and retains the original units of the target variable, making it easy to interpret. It is particularly useful when large errors are undesirable, as it emphasizes them more than metrics like Mean Absolute Error (MAE).
+
+#### Coefficient of Determination ($R^2$)
+
+$R^2$ measures how well the model explains the variability of the target variable:
+
+$$
+R^2 = 1 - \frac{\sum_{i=1}^n (\hat{y}_i - y_i)^2}{\sum_{i=1}^n (y_i - \bar{y})^2}
+$$
+
+- **Advantages**: $R^2$ provides a normalized measure of fit, ranging from 0 (no explanatory power) to 1 (perfect prediction). It complements RMSE by showing how well the model captures overall variance rather than just minimizing error.
+
+Together, RMSE and $R^2$ offer a comprehensive view of model performance, with one emphasizing prediction error magnitude, and the other explaining variance captured.
+
+### Baseline Model Results
+
+#### Parameter Selection
+
+After performing a grid search with 5-fold cross-validation, the baseline model’s best parameters were:
 
 - `n_estimators`: 200  
 - `max_depth`: 3  
@@ -172,15 +200,26 @@ The baseline model’s best parameters were:
 - `min_samples_leaf`: 2  
 - `min_samples_split`: 2
 
-The test MSE: **10,625**
+#### Performance Metrics
 
-### Performance Visualization
+- **RMSE:** 103.01
+- **$R^2$:** 0.37
 
-The following plot shows the model performance for outage duration over time. We can see that the model tends to fail to predict outlier events, which suggests that there is an extraneous variable influencing the outage duration that is not given in our dataset. Overall, I think that this model's performance is good.
+#### Performance Visualization
+
+The following plot shows the model performance for outage duration over time, along with the absolute error.
 
 <iframe src="assets/plots/eval/eval_outage_duration_900x800.html" width="900" height="800" frameborder="0" scrolling="no"></iframe>
 
+#### Baseline Model Evaluation
+
+We can see from the plot above that the model tends to fail to predict outlier outage events, which suggests that there is an extraneous variable influencing the outage duration that is not given in our dataset. This is also supported by the low $R^2$, which suggests that the variance of the actual outage duration is not captured by the prediction model.
+
+That being said, for the majority of outages the model's performance is decent. Overall, I think that this model's performance is good.
+
 ## Final Model
+
+### New Features
 
 To improve on our baseline, we engineered six new features:
 
@@ -191,13 +230,36 @@ To improve on our baseline, we engineered six new features:
 - `demand_loss_log`: log-transformed demand loss
 - `is_peak_hour`: binary peak hour flag
 
-The same model architecture and hyperparameter grid were used. Final MSE: **10,410**, an improvement over the baseline.
+The same model, model architecture, hyperparameter grid, and preprocessing steps were used.
 
-### Comparison Visualization
+### Final Model Results
+
+#### Parameter Selection
+
+After performing a grid search with 5-fold cross-validation, the final model’s best parameters were:
+
+- `n_estimators`: 200  
+- `max_depth`: 3  
+- `learning_rate`: 0.05  
+- `min_samples_leaf`: 2  
+- `min_samples_split`: 5 (**changed from baseline model**)
+
+#### Performance Metrics
+
+- **RMSE:** 102
+- **$R^2$:** 0.38
+
+#### Performance Visualization
+
+The following plot shows the final model's performance for outage duration over time compared to the baseline model's performance, along with the absolute error as before.
 
 <iframe src="assets/plots/eval/final_model_eval_900x800.html" width="900" height="800" frameborder="0" scrolling="no"></iframe>
 
-Here we can see that the final model outperforms the baseline model, though the difference is small.
+#### Final Model Evaluation
+
+The final model is only a slight improvement on the baseline model, with the $R^2$ improving from 0.37 to 0.38 and the RMSE improving from 103 to 102.
+
+That being said, I believe that the added features add additional robustness to the model, and that they will make it more generalizable to unseen data.
 
 ## Conclusion
 
