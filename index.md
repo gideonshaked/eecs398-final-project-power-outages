@@ -64,6 +64,12 @@ This is the first five rows of the cleaned data.
 |     4 |   2012 |       6 | Minnesota    | MN            | MRO           | East North Central |            -0.1 | normal             | Tuesday, June 19, 2012    | 4:30:00 AM          | Wednesday, June 20, 2012   | 11:00:00 PM               | severe weather     | thunderstorm            |               nan | 1 days 18:30:00   |              nan |                68200 |       11.79 |        9.25 |        6.71 |          9.19 | 1.85152e+06 | 1.94117e+06 | 1.99303e+06 |   5.78706e+06 |      31.9941 |      33.5433 |      34.4393 |         2317336 |          278466 |           11010 |           2606813 |        88.8954 |        10.6822 |         0.4224 |              51598 |            48156 |          1.07148 |                 0.6 |           5364 |          277627 |       1.93209 |             2.2 |      5380443 |          73.27 |       15.28 |           2279 |      1700.5 |           18.2 |            2.14 |          0.6 |    91.5927 |         8.40733 |            5.47874 | 2012-06-19 04:30:00 | 2012-06-20 23:00:00 |                      1 |
 |     5 |   2015 |       7 | Minnesota    | MN            | MRO           | East North Central |             1.2 | warm               | Saturday, July 18, 2015   | 2:00:00 AM          | Sunday, July 19, 2015      | 7:00:00 AM                | severe weather     | nan                     |               nan | 1 days 05:00:00   |              250 |               250000 |       13.07 |       10.16 |        7.74 |         10.43 | 2.02888e+06 | 2.16161e+06 | 1.77794e+06 |   5.97034e+06 |      33.9826 |      36.2059 |      29.7795 |         2374674 |          289044 |            9812 |           2673531 |        88.8216 |        10.8113 |         0.367  |              54431 |            49844 |          1.09203 |                 1.7 |           4873 |          292023 |       1.6687  |             2.2 |      5489594 |          73.27 |       15.28 |           2279 |      1700.5 |           18.2 |            2.14 |          0.6 |    91.5927 |         8.40733 |            5.47874 | 2015-07-18 02:00:00 | 2015-07-19 07:00:00 |                      1 |
 
+### Missing Values & Imputation
+
+For **numeric features**, we used mean imputation to fill in missing values. This method replaces any missing entry with the average of the available values in that column. We chose this approach because it is simple, preserves the scale and distribution of the data, and avoids discarding any records due to incomplete information. It ensures that we maintain consistency across the dataset without introducing artificial patterns or relying on external assumptions.
+
+For **categorical features**, we applied constant imputation by filling missing values with the placeholder `missing`. This allowed us to treat the absence of a value as a meaningful category, rather than attempting to guess the correct label or remove the row. We used this method to ensure that all categorical variables remained complete and could be cleanly encoded without introducing ambiguity or inconsistencies in the dataset.
+
 ### Univariate Analysis
 
 We began by visualizing the distribution of outage durations:
@@ -188,7 +194,7 @@ We selected **21 features** used to predict the target variable: `outage.duratio
 
 #### Quantitative Features (9)
 
-These features are continuous or count-based. Missing values were imputed using the mean, and values were standardized using `StandardScaler`.
+These features are continuous or count-based. Values were standardized using `StandardScaler`.
 
 - `year`
 - `month`
