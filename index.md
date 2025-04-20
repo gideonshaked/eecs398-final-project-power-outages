@@ -19,7 +19,7 @@ This project investigates the question of **how different aspects of an outage (
 
 The dataset spans major U.S. power outages from 2000 to 2016 and contains detailed outage characteristics including cause, duration, geographic metadata, and economic indicators.
 
-- **Rows**: ~1,500 outage events  
+- **Data Size**: 1,535 outage events  
 - **Relevant Columns**
   - **`outage.start.date`**: The date that the outage started.
   - **`outage.start.date`**: The time that the outage started.
