@@ -40,6 +40,30 @@ The dataset spans major U.S. power outages from 2000 to 2016 and contains detail
 
 ## Data Cleaning and Exploratory Data Analysis
 
+### Data Cleaning
+
+#### Data Cleaning Process
+
+The data cleaning process involved several key steps to prepare the outage dataset for analysis:
+
+1. First, all column names were standardized to lowercase to ensure consistency and simplify referencing.
+2. Next, the dataset’s separate date and time fields for the start and end of outages were combined and converted into proper datetime objects. This allowed for precise time-based calculations.
+3. Using these timestamps, the outage duration for each record was calculated by taking the difference between the restoration time and the start time. This duration was stored both as a full time interval and as a simplified count of days.
+
+These transformations enabled accurate modeling and analysis of outage lengths and time-related patterns in the data.
+
+#### Cleaned Data
+
+This is the first five rows of the cleaned data.
+
+|   OBS |   year |   month | u.s._state   | postal.code   | nerc.region   | climate.region     |   anomaly.level | climate.category   | outage.start.date         | outage.start.time   | outage.restoration.date    | outage.restoration.time   | cause.category     | cause.category.detail   |   hurricane.names | outage.duration   |   demand.loss.mw |   customers.affected |   res.price |   com.price |   ind.price |   total.price |   res.sales |   com.sales |   ind.sales |   total.sales |   res.percen |   com.percen |   ind.percen |   res.customers |   com.customers |   ind.customers |   total.customers |   res.cust.pct |   com.cust.pct |   ind.cust.pct |   pc.realgsp.state |   pc.realgsp.usa |   pc.realgsp.rel |   pc.realgsp.change |   util.realgsp |   total.realgsp |   util.contri |   pi.util.ofusa |   population |   poppct_urban |   poppct_uc |   popden_urban |   popden_uc |   popden_rural |   areapct_urban |   areapct_uc |   pct_land |   pct_water_tot |   pct_water_inland | outage.start        | outage.end          |   outage.duration.days |
+|------:|-------:|--------:|:-------------|:--------------|:--------------|:-------------------|----------------:|:-------------------|:--------------------------|:--------------------|:---------------------------|:--------------------------|:-------------------|:------------------------|------------------:|:------------------|-----------------:|---------------------:|------------:|------------:|------------:|--------------:|------------:|------------:|------------:|--------------:|-------------:|-------------:|-------------:|----------------:|----------------:|----------------:|------------------:|---------------:|---------------:|---------------:|-------------------:|-----------------:|-----------------:|--------------------:|---------------:|----------------:|--------------:|----------------:|-------------:|---------------:|------------:|---------------:|------------:|---------------:|----------------:|-------------:|-----------:|----------------:|-------------------:|:--------------------|:--------------------|-----------------------:|
+|     1 |   2011 |       7 | Minnesota    | MN            | MRO           | East North Central |            -0.3 | normal             | Friday, July 1, 2011      | 5:00:00 PM          | Sunday, July 3, 2011       | 8:00:00 PM                | severe weather     | nan                     |               nan | 2 days 03:00:00   |              nan |                70000 |       11.6  |        9.18 |        6.81 |          9.28 | 2.33292e+06 | 2.11477e+06 | 2.11329e+06 |   6.56252e+06 |      35.5491 |      32.225  |      32.2024 |         2308736 |          276286 |           10673 |           2595696 |        88.9448 |        10.644  |         0.4112 |              51268 |            47586 |          1.07738 |                 1.6 |           4802 |          274182 |       1.75139 |             2.2 |      5348119 |          73.27 |       15.28 |           2279 |      1700.5 |           18.2 |            2.14 |          0.6 |    91.5927 |         8.40733 |            5.47874 | 2011-07-01 17:00:00 | 2011-07-03 20:00:00 |                      2 |
+|     2 |   2014 |       5 | Minnesota    | MN            | MRO           | East North Central |            -0.1 | normal             | Sunday, May 11, 2014      | 6:38:00 PM          | Sunday, May 11, 2014       | 6:39:00 PM                | intentional attack | vandalism               |               nan | 0 days 00:01:00   |              nan |                  nan |       12.12 |        9.71 |        6.49 |          9.28 | 1.58699e+06 | 1.80776e+06 | 1.88793e+06 |   5.28423e+06 |      30.0325 |      34.2104 |      35.7276 |         2345860 |          284978 |            9898 |           2640737 |        88.8335 |        10.7916 |         0.3748 |              53499 |            49091 |          1.08979 |                 1.9 |           5226 |          291955 |       1.79    |             2.2 |      5457125 |          73.27 |       15.28 |           2279 |      1700.5 |           18.2 |            2.14 |          0.6 |    91.5927 |         8.40733 |            5.47874 | 2014-05-11 18:38:00 | 2014-05-11 18:39:00 |                      0 |
+|     3 |   2010 |      10 | Minnesota    | MN            | MRO           | East North Central |            -1.5 | cold               | Tuesday, October 26, 2010 | 8:00:00 PM          | Thursday, October 28, 2010 | 10:00:00 PM               | severe weather     | heavy wind              |               nan | 2 days 02:00:00   |              nan |                70000 |       10.87 |        8.19 |        6.07 |          8.15 | 1.46729e+06 | 1.80168e+06 | 1.9513e+06  |   5.22212e+06 |      28.0977 |      34.501  |      37.366  |         2300291 |          276463 |           10150 |           2586905 |        88.9206 |        10.687  |         0.3924 |              50447 |            47287 |          1.06683 |                 2.7 |           4571 |          267895 |       1.70627 |             2.1 |      5310903 |          73.27 |       15.28 |           2279 |      1700.5 |           18.2 |            2.14 |          0.6 |    91.5927 |         8.40733 |            5.47874 | 2010-10-26 20:00:00 | 2010-10-28 22:00:00 |                      2 |
+|     4 |   2012 |       6 | Minnesota    | MN            | MRO           | East North Central |            -0.1 | normal             | Tuesday, June 19, 2012    | 4:30:00 AM          | Wednesday, June 20, 2012   | 11:00:00 PM               | severe weather     | thunderstorm            |               nan | 1 days 18:30:00   |              nan |                68200 |       11.79 |        9.25 |        6.71 |          9.19 | 1.85152e+06 | 1.94117e+06 | 1.99303e+06 |   5.78706e+06 |      31.9941 |      33.5433 |      34.4393 |         2317336 |          278466 |           11010 |           2606813 |        88.8954 |        10.6822 |         0.4224 |              51598 |            48156 |          1.07148 |                 0.6 |           5364 |          277627 |       1.93209 |             2.2 |      5380443 |          73.27 |       15.28 |           2279 |      1700.5 |           18.2 |            2.14 |          0.6 |    91.5927 |         8.40733 |            5.47874 | 2012-06-19 04:30:00 | 2012-06-20 23:00:00 |                      1 |
+|     5 |   2015 |       7 | Minnesota    | MN            | MRO           | East North Central |             1.2 | warm               | Saturday, July 18, 2015   | 2:00:00 AM          | Sunday, July 19, 2015      | 7:00:00 AM                | severe weather     | nan                     |               nan | 1 days 05:00:00   |              250 |               250000 |       13.07 |       10.16 |        7.74 |         10.43 | 2.02888e+06 | 2.16161e+06 | 1.77794e+06 |   5.97034e+06 |      33.9826 |      36.2059 |      29.7795 |         2374674 |          289044 |            9812 |           2673531 |        88.8216 |        10.8113 |         0.367  |              54431 |            49844 |          1.09203 |                 1.7 |           4873 |          292023 |       1.6687  |             2.2 |      5489594 |          73.27 |       15.28 |           2279 |      1700.5 |           18.2 |            2.14 |          0.6 |    91.5927 |         8.40733 |            5.47874 | 2015-07-18 02:00:00 | 2015-07-19 07:00:00 |                      1 |
+
 ### Univariate Analysis
 
 We began by visualizing the distribution of outage durations:
@@ -73,7 +97,7 @@ Finally, we visualized how time-of-day and work hours influence outage durations
 
 <iframe src="assets/plots/bivar/Outage_Duration_Distribution-_Work_Hours_vs_Off_Hours_by_Region_700x350.html" width="700" height="350" frameborder="0" scrolling="no"></iframe>
 
-It looks lie outages during off-hours tend to last longer, especially in certain climate zones.
+It looks like outages during off-hours tend to last longer, especially in certain climate zones.
 
 ### Aggregated Tables
 
@@ -114,11 +138,39 @@ This table tracks the scale of impact by showing the number of customers affecte
 
 ## Framing a Prediction Problem
 
-We decided to frame a regression problem:
+### Prediction Problem
+
+We decided to frame a **regression** problem:
 
 > Given all of the data known at the time of the outage, predict the duration of the outage.
 
-This problem has practical importance: better duration forecasts allow for smarter resource allocation and improved communication with customers. The target variable is `outage.duration`, and we evaluated models using **Mean Squared Error (MSE)**, to capture the size of deviation in duration estimates.
+This problem has practical importance: better duration forecasts allow for smarter resource allocation and improved communication with customers.
+
+### Evaluation Metrics
+
+Specifically, we predicted the target variable `outage.duration`. To assess model performance, we used **Root Mean Squared Error (RMSE)** and the **Coefficient of Determination ($R^2$)**.
+
+#### Root Mean Squared Error (RMSE)
+
+RMSE is a widely used metric that measures the average magnitude of the prediction error, with larger errors penalized more heavily due to squaring. It is defined as:
+
+$$
+\text{RMSE} = \sqrt{\frac{1}{n} \sum_{i=1}^n (\hat{y}_i - y_i)^2}
+$$
+
+- **Advantages**: RMSE is intuitive and retains the original units of the target variable, making it easy to interpret. It is particularly useful when large errors are undesirable, as it emphasizes them more than metrics like Mean Absolute Error (MAE).
+
+#### Coefficient of Determination ($R^2$)
+
+$R^2$ measures how well the model explains the variability of the target variable:
+
+$$
+R^2 = 1 - \frac{\sum_{i=1}^n (\hat{y}_i - y_i)^2}{\sum_{i=1}^n (y_i - \bar{y})^2}
+$$
+
+- **Advantages**: $R^2$ provides a normalized measure of fit, ranging from 0 (no explanatory power) to 1 (perfect prediction). It complements RMSE by showing how well the model captures overall variance rather than just minimizing error.
+
+Together, RMSE and $R^2$ offer a comprehensive view of model performance, with one emphasizing prediction error magnitude, and the other explaining variance captured.
 
 ## Baseline Model
 
@@ -162,32 +214,6 @@ These features have no intrinsic order. They were encoded using `OneHotEncoder`.
 
 - `outage.duration`: The duration of the power outage in hours (regression target -- quantitative).
 
-### Evaluation Metrics
-
-To assess model performance, I used **Root Mean Squared Error (RMSE)** and the **Coefficient of Determination ($R^2$)**.
-
-#### Root Mean Squared Error (RMSE)
-
-RMSE is a widely used metric that measures the average magnitude of the prediction error, with larger errors penalized more heavily due to squaring. It is defined as:
-
-$$
-\text{RMSE} = \sqrt{\frac{1}{n} \sum_{i=1}^n (\hat{y}_i - y_i)^2}
-$$
-
-- **Advantages**: RMSE is intuitive and retains the original units of the target variable, making it easy to interpret. It is particularly useful when large errors are undesirable, as it emphasizes them more than metrics like Mean Absolute Error (MAE).
-
-#### Coefficient of Determination ($R^2$)
-
-$R^2$ measures how well the model explains the variability of the target variable:
-
-$$
-R^2 = 1 - \frac{\sum_{i=1}^n (\hat{y}_i - y_i)^2}{\sum_{i=1}^n (y_i - \bar{y})^2}
-$$
-
-- **Advantages**: $R^2$ provides a normalized measure of fit, ranging from 0 (no explanatory power) to 1 (perfect prediction). It complements RMSE by showing how well the model captures overall variance rather than just minimizing error.
-
-Together, RMSE and $R^2$ offer a comprehensive view of model performance, with one emphasizing prediction error magnitude, and the other explaining variance captured.
-
 ### Baseline Model Results
 
 #### Parameter Selection
@@ -211,28 +237,28 @@ The following plot shows the model performance for outage duration over time, al
 
 <iframe src="assets/plots/eval/eval_outage_duration_900x800.html" width="900" height="800" frameborder="0" scrolling="no"></iframe>
 
-#### Baseline Model Evaluation
+#### Baseline Model Overall Evaluation
 
 We can see from the plot above that the model tends to fail to predict outlier outage events, which suggests that there is an extraneous variable influencing the outage duration that is not given in our dataset. This is also supported by the low $R^2$, which suggests that the variance of the actual outage duration is not captured by the prediction model.
 
-That being said, for the majority of outages the model's performance is decent. Overall, I think that this model's performance is good.
+That being said, for the majority of outages the model's performance is decent. Overall, we think that this model's performance is good.
 
 ## Final Model
 
-### New Features
+### Engineered Features and Justifications
 
-To improve on our baseline, we engineered six new features:
-
-- `year_offset`: relative year from baseline
-- `had_hurricane`: binary hurricane flag
-- `cause_combined`: composite of cause and sub-cause
-- `popden_diff`: difference between urban and rural density
-- `demand_loss_log`: log-transformed demand loss
-- `is_peak_hour`: binary peak hour flag
-
-The same model, model architecture, hyperparameter grid, and preprocessing steps were used.
+| Feature Name        | Description                                              | Justification                                                                                   |
+|---------------------|----------------------------------------------------------|--------------------------------------------------------------------------------------------------|
+| `year_offset`       | Relative year from a baseline (e.g., 2000)               | Captures long-term trends while avoiding large raw year values that can distort learning.       |
+| `had_hurricane`     | Binary flag for presence of a hurricane                  | Simplifies hurricane data and highlights its potential impact on outages.                       |
+| `cause_combined`    | Combined category of general and detailed cause          | Encodes richer information while reducing redundancy between related categorical features.      |
+| `popden_diff`       | Urban minus rural population density                     | Reflects demographic imbalance that may influence infrastructure vulnerability.                 |
+| `demand_loss_log`   | Log-transformed demand loss (in megawatts)               | Mitigates skew and reduces sensitivity to large outliers in demand loss data.                   |
+| `is_peak_hour`      | Binary indicator for peak electricity usage hours        | Helps model learn time-sensitive behavior, especially around demand and response prioritization.|
 
 ### Final Model Results
+
+The same model, model architecture, hyperparameter grid, and preprocessing steps were used as in the baseline model.
 
 #### Parameter Selection
 
@@ -246,7 +272,7 @@ After performing a grid search with 5-fold cross-validation, the final model’s
 
 #### Performance Metrics
 
-- **RMSE:** 102
+- **RMSE:** 102.00
 - **$R^2$:** 0.38
 
 #### Performance Visualization
@@ -255,11 +281,11 @@ The following plot shows the final model's performance for outage duration over 
 
 <iframe src="assets/plots/eval/final_model_eval_900x800.html" width="900" height="800" frameborder="0" scrolling="no"></iframe>
 
-#### Final Model Evaluation
+#### Final Model Overall Evaluation
 
 The final model is only a slight improvement on the baseline model, with the $R^2$ improving from 0.37 to 0.38 and the RMSE improving from 103 to 102.
 
-That being said, I believe that the added features add additional robustness to the model, and that they will make it more generalizable to unseen data.
+That being said, we believe that the added features add additional robustness to the model, and that they will make it more generalizable to unseen data.
 
 ## Conclusion
 
