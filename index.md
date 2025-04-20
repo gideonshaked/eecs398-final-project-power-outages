@@ -129,7 +129,7 @@ The test MSE: **10,625**
 
 ### Performance Visualization
 
-<iframe src="assets/plots/eval/Actual_vs_Predicted_Outage_Duration_with_Absolute_Error_700x350.html" width="700" height="350" frameborder="0" scrolling="no"></iframe>
+<iframe src="assets/plots/eval/Actual_vs_Predicted_Outage_Duration_with_Absolute_Error_900x800.html" width="900" height="800" frameborder="0" scrolling="no"></iframe>
 
 ## Final Model
 
@@ -146,7 +146,9 @@ The same model architecture and hyperparameter grid were used. Final MSE: **10,4
 
 ### Comparison Visualization
 
-<iframe src="assets/plots/eval/plot_1_2025-04-19_19-22-38.867170_700x350.html" width="700" height="350" frameborder="0" scrolling="no"></iframe>
+<iframe src="assets/plots/eval/final_model_eval_900x800.html" width="900" height="800" frameborder="0" scrolling="no"></iframe>
+
+Here we can see that the final model outperforms the baseline model, though the difference is small.
 
 ## Conclusion
 
