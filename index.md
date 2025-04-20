@@ -76,7 +76,7 @@ For **categorical features**, we filled missing values with the placeholder `mis
 
 Below we have the frequency of the features that needed to be imputed, before and after imputation. As we can see, the distribution of each of the features did not change much, which further validates our choice of mean imputation.
 
-<iframe src="assets/plots/numeric_imputation_700x900.html" width="700" height="400" frameborder="0" scrolling="no"></iframe>
+<iframe src="assets/plots/numeric_imputation.html" width="700" height="400" frameborder="0" scrolling="no"></iframe>
 
 ### Univariate Analysis
 
