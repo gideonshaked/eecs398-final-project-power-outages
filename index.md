@@ -178,7 +178,7 @@ Together, RMSE and $R^2$ offer a comprehensive view of model performance, with o
 
 ### Model Choice: Gradient Boosting Regressor
 
-I selected a **Gradient Boosting Regressor** for this task due to its strong performance on structured, tabular datasets and its ability to model complex nonlinear relationships. Gradient boosting builds an ensemble of decision trees in a sequential manner, where each new tree corrects the errors of the previous ones. This results in a highly flexible and powerful model capable of capturing subtle patterns in the data.
+We selected a **Gradient Boosting Regressor** for this task due to its strong performance on structured, tabular datasets and its ability to model complex nonlinear relationships. Gradient boosting builds an ensemble of decision trees in a sequential manner, where each new tree corrects the errors of the previous ones. This results in a highly flexible and powerful model capable of capturing subtle patterns in the data.
 
 Given the mix of numeric, categorical, and engineered features (some with high cardinality and others with skewed distributions) gradient boosting offers robustness without requiring extensive feature scaling or transformation. It also handles interactions between variables well, which is important in a dataset where multiple factors (e.g., weather, population, time of day) may jointly influence outage duration.
 
@@ -272,7 +272,7 @@ Gradient boosting effectively handled the dataset’s mix of numeric and categor
 
 ### Final Model Results
 
-The same model, model architecture, hyperparameter grid, and preprocessing steps were used as in the baseline model.
+The same hyperparameter grid, and preprocessing steps were used as in the baseline model.
 
 #### Parameter Selection
 
