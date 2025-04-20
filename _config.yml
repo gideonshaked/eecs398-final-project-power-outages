@@ -1,9 +1,14 @@
-remote_theme: just-the-docs/just-the-docs
+remote_theme: just-the-docs/just-the-docs@v0.9.0
 plugins:
   - jekyll-remote-theme
+
+baseurl: "/"
+url: "https://poweroutages.gideonshaked.com"
 
 nav_enabled: false
 search_enabled: false
 aux_links:
   View on GitHub:
     - https://github.com/gideonshaked/eecs398-final-project-power-outages
+
+footer_content:
