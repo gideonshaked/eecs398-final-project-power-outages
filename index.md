@@ -148,7 +148,7 @@ This problem has practical importance: better duration forecasts allow for smart
 
 ### Evaluation Metrics
 
-Specifically, we predicted the target variable `outage.duration`. To assess model performance, we used **Root Mean Squared Error (RMSE)** and the **Coefficient of Determination ($R^2$)**.
+Specifically, we predicted the target variable `outage.duration`. To assess model performance, we used **Root Mean Squared Error (RMSE)** and the **Coefficient of Determination**.
 
 #### Root Mean Squared Error (RMSE)
 
@@ -162,15 +162,15 @@ $$
 
 #### Coefficient of Determination
 
-$R^2$ measures how well the model explains the variability of the target variable:
+coefficient of determination measures how well the model explains the variability of the target variable:
 
 $$
 R^2 = 1 - \frac{\sum_{i=1}^n (\hat{y}_i - y_i)^2}{\sum_{i=1}^n (y_i - \bar{y})^2}
 $$
 
-- **Advantages**: $R^2$ provides a normalized measure of fit, ranging from 0 (no explanatory power) to 1 (perfect prediction). It complements RMSE by showing how well the model captures overall variance rather than just minimizing error.
+- **Advantages**: coefficient of determination provides a normalized measure of fit, ranging from 0 (no explanatory power) to 1 (perfect prediction). It complements RMSE by showing how well the model captures overall variance rather than just minimizing error.
 
-Together, RMSE and $R^2$ offer a comprehensive view of model performance, with one emphasizing prediction error magnitude, and the other explaining variance captured.
+Together, RMSE and coefficient of determination offer a comprehensive view of model performance, with one emphasizing prediction error magnitude, and the other explaining variance captured.
 
 ## Baseline Model
 
@@ -237,7 +237,7 @@ After performing a grid search with 5-fold cross-validation, the baseline model�
 #### Performance Metrics
 
 - **RMSE:** 103.01
-- **$R^2$:** 0.37
+- **coefficient of determination:** 0.37
 
 #### Performance Visualization
 
@@ -247,13 +247,13 @@ The following plot shows the model performance for outage duration over time, al
 
 #### Baseline Model Overall Evaluation
 
-We can see from the plot above that the model tends to fail to predict outlier outage events, which suggests that there is an extraneous variable influencing the outage duration that is not given in our dataset. This is also supported by the low $R^2$, which suggests that the variance of the actual outage duration is not captured by the prediction model.
+We can see from the plot above that the model tends to fail to predict outlier outage events, which suggests that there is an extraneous variable influencing the outage duration that is not given in our dataset. This is also supported by the low coefficient of determination, which suggests that the variance of the actual outage duration is not captured by the prediction model.
 
 That being said, for the majority of outages the model's performance is decent. Overall, we think that this model's performance is good.
 
 ## Final Model
 
-After evaluating several modeling options, we retained the **Gradient Boosting Regressor** in the final pipeline due to its superior performance on key evaluation metrics, particularly RMSE and $R^2$. Despite some limitations in capturing all variance (as reflected in a lower $R^2$), the model consistently delivered low absolute prediction error, indicating strong predictive utility.
+After evaluating several modeling options, we retained the **Gradient Boosting Regressor** in the final pipeline due to its superior performance on key evaluation metrics, particularly RMSE and coefficient of determination. Despite some limitations in capturing all variance (as reflected in a lower coefficient of determination), the model consistently delivered low absolute prediction error, indicating strong predictive utility.
 
 Gradient boosting effectively handled the dataset’s mix of numeric and categorical features, including engineered variables with skewed distributions and nonlinear effects. Its ability to model complex interactions between features made it especially well-suited to this multifactorial problem.
 
@@ -285,7 +285,7 @@ After performing a grid search with 5-fold cross-validation, the final model’s
 #### Performance Metrics
 
 - **RMSE:** 102.00
-- **$R^2$:** 0.38
+- **coefficient of determination:** 0.38
 
 #### Performance Visualization
 
@@ -295,7 +295,7 @@ The following plot shows the final model's performance for outage duration over 
 
 #### Final Model Overall Evaluation
 
-The final model is only a slight improvement on the baseline model, with the $R^2$ improving from 0.37 to 0.38 and the RMSE improving from 103 to 102.
+The final model is only a slight improvement on the baseline model, with the coefficient of determination improving from 0.37 to 0.38 and the RMSE improving from 103 to 102.
 
 That being said, we believe that the added features add additional robustness to the model, and that they will make it more generalizable to unseen data.
 
