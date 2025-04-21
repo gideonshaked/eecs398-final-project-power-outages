@@ -176,7 +176,7 @@ This problem has practical importance: better duration forecasts allow for smart
 
 ### Evaluation Metrics
 
-Specifically, we predicted the target variable `outage.duration`. To assess model performance, we used **root mean squared error (RMSE)** and the **coefficient of determination**.
+Specifically, we predicted the target variable `outage.duration`. To assess model performance, we primarily used **root mean squared error (RMSE)** and the **coefficient of determination**, along with **absolute error**.
 
 #### Root Mean Squared Error (RMSE)
 
@@ -199,6 +199,18 @@ $$
 - **Advantages:** The coefficient of determination provides a normalized measure of fit, ranging from 0 (no explanatory power) to 1 (perfect prediction). It complements RMSE by showing how well the model captures overall variance rather than just minimizing error.
 
 Together, RMSE and the coefficient of determination offer a comprehensive view of model performance, with one emphasizing prediction error magnitude, and the other explaining variance captured.
+
+#### Absolute Error
+
+Absolute Error measures the magnitude of the difference between the predicted and actual values for each individual prediction:
+
+$$
+\text{Absolute Error}_i = |\hat{y}_i - y_i|
+$$
+
+- **Advantages:** It offers a direct, interpretable measure of model accuracy for each sample, without amplifying large errors. This makes it well-suited for visualizing performance over time or across conditions, especially when highlighting when and where predictions deviate most.
+
+We are going to visualize absolute error as a function of time, in order to directly see model performance as a function of year and time-of-year.
 
 ## Baseline Model
 
