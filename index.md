@@ -78,7 +78,9 @@ Below we have the frequency of the features that needed to be imputed, before an
 
 <iframe src="assets/plots/numeric_imputation.html" width="700" height="400" frameborder="0" scrolling="no"></iframe>
 
-### Univariate Analysis
+### Exploratory Data Analysis
+
+#### Distribution of Outage Duration
 
 We began by visualizing the distribution of outage durations:
 
@@ -86,16 +88,22 @@ We began by visualizing the distribution of outage durations:
 
 Outages typically last under 3 days, though long tails exist due to extreme events.
 
+#### Outage Frequency and Duration Over Time
+
 We also looked at how outages are distributed over time:
 
 <iframe src="assets/plots/univar/Power_Outages_by_Year_700x350.html" width="700" height="350" frameborder="0" scrolling="no"></iframe>
+
+It seems that there was a spike in outages during 2011-2013. This was probably due to an increase in severe weather events during this time period.
+
 <iframe src="assets/plots/univar/Average_Outage_Duration_by_Month_700x350.html" width="700" height="350" frameborder="0" scrolling="no"></iframe>
+<iframe src="assets/plots/univar/Average_Outage_Frequency_by_Month_700x350.html" width="700" height="350" frameborder="0" scrolling="no"></iframe>
 
-Outage frequency peaks in summer, likely reflecting storm seasons, while average duration spikes in winter--potentially due to ice storms and slower repairs.
+Outage frequency peaks in summer, likely reflecting storm seasons, while outage duration spikes in winter--potentially due to ice storms and slower repairs.
 
-### Bivariate Analysis
+#### Breakdown of Outage Causes
 
-To examine cause-specific impacts:
+We examined cause-specific impacts as well:
 
 <iframe src="assets/plots/bivar/Outage_Duration_by_Cause_Category_700x350.html" width="700" height="350" frameborder="0" scrolling="no"></iframe>
 
@@ -104,18 +112,24 @@ Weather-related outages generally have higher durations than equipment failures 
 We also explored how outage causes vary over time and geography:
 
 <iframe src="assets/plots/bivar/Distribution_of_Each_Cause_Category_by_Month_pct_700x350.html" width="700" height="350" frameborder="0" scrolling="no"></iframe>
+
+It looks like ["public appeal"](https://www.entergynewsroom.com/storm-center/restoration/loadshed) spikes as a cause during the summer months, which tracks with our earlier conclusion that summer outages are due to the use of air conditioning overtaxing the grid, because "public appeal" outages are outages where a utility asks the public to conserve power voluntarily.
+
 <iframe src="assets/plots/bivar/Distribution_of_Each_Cause_Category_by_Climate_Region_pct_700x350.html" width="700" height="350" frameborder="0" scrolling="no"></iframe>
+
+Likewise, "public appeal" outages are frequent in the South and Southwest regions, which are the areas likely to be the hottest and thus most aggressively consuming electricity during summer.
+
 <iframe src="assets/plots/bivar/Distribution_of_Each_Cause_Category_by_Year_pct_700x350.html" width="700" height="350" frameborder="0" scrolling="no"></iframe>
 
-Finally, we visualized how time-of-day and work hours influence outage durations:
+It looks like this plot follows the earlier trend that we found, where severe weather events during 2011-2013 caused a spike in power outages across the board.
+
+#### Outages and Time-of-Day
+
+We visualized how time-of-day and work hours influence outage durations:
 
 <iframe src="assets/plots/bivar/Outage_Duration_Distribution-_Work_Hours_vs_Off_Hours_by_Region_700x350.html" width="700" height="350" frameborder="0" scrolling="no"></iframe>
 
 It looks like outages during off-hours tend to last longer, especially in certain climate zones.
-
-### Aggregated Tables
-
-We aggregated data to understand regional variation in outage impact, which helped us identify which combinations of region and cause led to particularly long or severe outages.
 
 #### Number of Days Affected by Cause and Climate Region
 
