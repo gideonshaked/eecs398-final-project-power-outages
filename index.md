@@ -13,9 +13,11 @@
 
 ## Introduction
 
-Power outages are costly disruptions that can stem from various causes, ranging from severe weather to technical failures. Understanding the relationships between the *cause* of an outage and its *impact*, both in terms of restoration time and number of customers affected, is vital for both policymakers and utility companies.
+Power outages are costly disruptions that can stem from various causes, ranging from severe weather to technical failures.
+Understanding the relationships between the *cause* of an outage and its *impact*, both in terms of restoration time and number of customers affected,
+is vital for both policymakers and utility companies.
 
-This project investigates the question of **how different aspects of an outage (e.g., weather vs. technical failure) impact the restoration time**
+This project investigates the question of **how different aspects of an outage impact the how long it takes for power to be restored.**
 
 The dataset spans major U.S. power outages from 2000 to 2016 and contains detailed outage characteristics including cause, duration, geographic metadata, and economic indicators.
 
