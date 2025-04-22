@@ -309,7 +309,7 @@ Gradient boosting effectively handled the dataset’s mix of numeric and categor
 
 ### Final Model Results
 
-The same hyperparameter grid, and preprocessing steps were used as in the baseline model.
+The same hyperparameter grid and preprocessing steps were used as in the baseline model.
 
 #### Parameter Selection
 
