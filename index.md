@@ -115,7 +115,7 @@ We also explored how outage causes vary over time and geography:
 
 <iframe src="assets/plots/bivar/Distribution_of_Each_Cause_Category_by_Month_pct_700x350.html" width="700" height="350" frameborder="0" scrolling="no"></iframe>
 
-It looks like ["public appeal"](https://www.entergynewsroom.com/storm-center/restoration/loadshed) spikes as a cause during the summer months, which tracks with our earlier conclusion that summer outages are due to the use of air conditioning overtaxing the grid, because "public appeal" outages are outages where a utility asks the public to conserve power voluntarily.
+It looks like ["public appeal"](https://www.entergynewsroom.com/storm-center/restoration/loadshed) spikes as a cause during the summer months, which tracks with our earlier conclusion that summer outages are due to the use of air conditioning overtaxing the grid ("public appeal" outages are outages where a utility asks the public to conserve power voluntarily).
 
 <iframe src="assets/plots/bivar/Distribution_of_Each_Cause_Category_by_Climate_Region_pct_700x350.html" width="700" height="350" frameborder="0" scrolling="no"></iframe>
 
